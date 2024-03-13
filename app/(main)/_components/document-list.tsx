@@ -8,7 +8,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Item } from "./item";
 import { cn } from "@/lib/utils";
-import { FileIcon } from "lucide/react";
+import { FileIcon } from "lucide-react";
 
 interface DocumentListProps {
     parentDocumentId?: Id<"documents">;
@@ -80,6 +80,13 @@ export const DocumentList = ({
                         onExpand={() => onExpand(document._id)}
                         expanded={expanded[document._id]}
                     />
+                    {expanded[document._id] && (
+                        <DocumentList 
+                            parentDocumentId={document._id}
+                            level={level + 1}
+
+                        />
+                    )}
                 </div>
             ))}
         </>
